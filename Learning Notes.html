@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>General - Notes</title>
+</head>
+<body>
+    <h1><ul><li>Notes on Linux</li></ul></h1>
+    <h3>How to Set Permissions when Creating a Directory #</h3>
+    <pre class="terminal"><code class="terminal-line" prefix="$">mkdir -m 700 newdir</code></pre>
+
+    <h3>Use <span>useradd [username]</span> to add a new user</h3>
+    <h5>By defualt the account will be created without a password and will be locked</h5>
+
+    <h3>Use <span>passwd [username]</span> to add a new user</h3>
+    <h5>Run password by itself to set your own password</h5>
+
+    <h4>Use <span>groupadd [username]</span> to ceate a new group</h4>
+    <h4>Use <span>gpasswd -a [user] [group]</span> to add a user to a group</h4>
+    <p>
+        # Docker cheat sheet
+	## Start Docker deamon service
+	$ sudo service docker start
+
+	## Status of Docker deamon service
+	$ sudo service docker status
+
+	## Stop Docker deamon service
+	$ sudo service docker stop
+
+	## Pulling an image from docker hub
+	$ sudo docker pull ubuntu:20.04
+
+	## Show pulled images
+	$ sudo docker images
+
+	## Create a container with a image
+	$ sudo docker run -it --name my-pytest my-selenium:latest bash
+
+	## Show existing containers
+	$ sudo docker ps -a
+
+	## Create a container and remove the container upon exit
+	$ sudo docker run -it --name my-pytest --rm my-selenium:latest bash
+
+	## Remove all containers
+	$ sudo docker container prune
+
+	## Building a custom image and creating a container from the custom image
+	$ sudo docker build -t my-selenium . && sudo docker run -it --name sele-cont --rm my-selenium bash
+
+	## Remove an image
+	$ sudo docker rmi ubuntu:latest
+
+	## Remove images with <none> values
+	$ sudo docker rmi $(sudo docker images -f "dangling=true" -q) --force
+
+
+    </p>
+
+	<!-- # Dockerfile
+
+		FROM selenium/standalone-chrome:latest
+		COPY requirements.txt /packages/requirements.txt
+		RUN sudo apt-get -y update
+		RUN sudo apt-get install -y software-properties-common
+		RUN sudo apt-add-repository -y universe
+		RUN sudo apt-get install -y python3.8 python3-pip git file
+		RUN sudo -H pip3 install --upgrade pip
+		RUN pip3 install -r packages/requirements.txt
+
+	-->
+</body>
+</html>
